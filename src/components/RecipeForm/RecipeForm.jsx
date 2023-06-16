@@ -5,6 +5,17 @@ import { addRecipe } from "redux/recipesSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+const initialValues = {
+    name:'',
+    image:'',
+    time: 0,
+    servings: 0,
+    calories: 0,
+    difficulty: 'easy',
+    ingredients: '',
+    instructions: '',
+}
+
 const RecipeSchema = Yup.object().shape(
     {
         name: Yup.string().min(2, 'Too short').max(50, 'Too long').required('Required'),
@@ -15,32 +26,21 @@ const RecipeSchema = Yup.object().shape(
         difficulty:Yup.string().oneOf(['easy', 'medium', 'hard']).required('Required'),
     }
 );
-
 const RecipeForm = () => {
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleSubmit =(values)=>{
+
+    const handleSubmit = (values) => {
         dispatch(addRecipe(values));
         navigate("/recipes", { replace: false })
     }
 
     return (
-        <Formik initialValues={{
-        name:'',
-        image:'',
-        time: 0,
-        servings: 0,
-        calories: 0,
-        difficulty: 'easy',
-        ingredients: '',
-        instructions: '',
-}}  
+        <Formik initialValues={initialValues}  
         validationSchema={RecipeSchema} 
-
         onSubmit={(values,actions)=>{
-        console.log(values);
-       handleSubmit(values)
-        actions.resetForm();
+            handleSubmit(values)
+            actions.resetForm();
 }}> 
              <Form>
                 <FormField>

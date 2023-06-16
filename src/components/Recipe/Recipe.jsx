@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { BsAlarm } from 'react-icons/bs';
 import { AiOutlinePieChart } from 'react-icons/ai';
-import { HiOutlineChartBar, HiTrash, HiZoomIn } from 'react-icons/hi';
-import { Badge, Container, Image, InfoItem, RecipeDifficulty, RecipeInfo, Actions, Meta, Title } from './Recipe.styled';
+import { HiOutlineChartBar, HiTrash, HiZoomIn, HiHeart } from 'react-icons/hi';
+import { Badge, Container, Image, InfoItem, RecipeDifficulty, RecipeInfo, Actions, Meta, Title, Favorite } from './Recipe.styled';
 import { useDispatch } from 'react-redux';
-import { deleteRecipe } from 'redux/recipesSlice';
+import { deleteRecipe, addFavorite } from 'redux/recipesSlice';
 import { useNavigate } from 'react-router-dom';
 
-export const Recipe = ({item:{id, image, name, time, servings, calories, difficulty}}) =>{
+export const Recipe = ({item:{id, image, name, time, servings, calories, difficulty, favorite}}) =>{
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,9 +39,10 @@ export const Recipe = ({item:{id, image, name, time, servings, calories, difficu
       </RecipeDifficulty>
 
       <Actions>
-        <button onClick={()=>dispatch(deleteRecipe(id))}aria-label="Delete"><HiTrash/></button>
+        <button onClick={()=>dispatch(deleteRecipe(id))} aria-label="Delete"><HiTrash/></button>
         <button onClick={()=>navigate(id)} aria-label="Zoom"><HiZoomIn/></button>
       </Actions>
+          <Favorite onClick={() => dispatch(addFavorite(id))}>{favorite ? <HiHeart /> : 'add to'}</Favorite>
       </Meta> 
       </Container>
     );

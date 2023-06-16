@@ -3,21 +3,19 @@ import { BackLink } from "../components/BackLink/BackLink";
 import { BsAlarm } from 'react-icons/bs';
 import { AiOutlinePieChart } from 'react-icons/ai';
 import { HiOutlineChartBar } from 'react-icons/hi';
-import { getRecipes } from "redux/selectors";
-import { useSelector } from 'react-redux';
+import { useRecipes } from "hooks/useRecipes";
 
 const RecipeDetails = () => {
     const {recipeId} = useParams();
     const location = useLocation();
     const backLinkHref = location.state?.from ?? "/recipes";
 
-    const recipes = useSelector(getRecipes);
+    const recipes = useRecipes();
     const getRecipeById = (recipeId) => {
         return recipes.find((recipe) => recipe.id === recipeId);
     };
 
     const {name, time,servings,calories,image,ingredients,instructions} = getRecipeById(recipeId);
-    console.log(ingredients)
 
     return(
         <main>

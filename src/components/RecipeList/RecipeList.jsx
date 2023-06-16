@@ -1,13 +1,12 @@
-import { Recipe } from '../Recipe/Recipe';
+import { useRecipes } from 'hooks/useRecipes';
+import { Recipe } from '../Recipe';
 import { List, ListItem } from './RecipeList.styled';
-import { getRecipes } from "redux/selectors";
-import { useSelector } from 'react-redux';
 
 export const RecipeList = () => {
-  const recipes = useSelector(getRecipes);
+  const recipes = useRecipes();
 
   return (
-    <List style={{ display: 'flex', gap: 16 }}>
+    <List style={{ display: 'flex', gap: 25 }}>
       {recipes.map(item => (
         <ListItem key={item.id}>
         <Recipe item={item} />

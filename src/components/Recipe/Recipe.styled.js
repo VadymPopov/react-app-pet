@@ -62,11 +62,17 @@ background-color: ${props => {
 `;
 
 export const Actions = styled.div`
- position: absolute;
+  position: absolute;
   top: 8px;
   right: 8px;
   display: flex;
   gap: 4px;
+`;
+
+export const Favorite = styled.button`
+  position: absolute;
+  top: 8px;
+  left: 8px;
 `;
 
 export const Title = styled.h2`

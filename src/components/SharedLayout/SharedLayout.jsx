@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Container, Header, Logo, Link } from "./SharedLayout.styled";
 import {SiReact} from 'react-icons/si';
-import Loader from "components/Loader/Loader";
+import {Loader} from "components/Loader";
 
 export const SharedLayout = () => {
   return (
@@ -18,7 +18,6 @@ export const SharedLayout = () => {
           <Link to="/" end>
             Home
           </Link>
-          <Link to="/todo">ToDo</Link>
           <Link to="/recipes">Recipes</Link>
         </nav>
       </Header>
